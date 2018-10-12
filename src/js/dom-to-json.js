@@ -5,8 +5,7 @@ function toJSON(node) {
   };
   if (node.tagName) {
     obj.tagName = node.tagName.toLowerCase();
-  } else
-  if (node.nodeName) {
+  } else if (node.nodeName) {
     obj.nodeName = node.nodeName;
   }
   if (node.nodeValue) {
@@ -15,7 +14,7 @@ function toJSON(node) {
   var attrs = node.attributes;
   if (attrs) {
     var length = attrs.length;
-    var arr = obj.attributes = new Array(length);
+    var arr = (obj.attributes = new Array(length));
     for (var i = 0; i < length; i++) {
       attr = attrs[i];
       arr[i] = [attr.nodeName, attr.nodeValue];
@@ -36,7 +35,8 @@ function toDOM(obj) {
   if (typeof obj == 'string') {
     obj = JSON.parse(obj);
   }
-  var node, nodeType = obj.nodeType;
+  var node,
+    nodeType = obj.nodeType;
   switch (nodeType) {
     case 1: //ELEMENT_NODE
       node = document.createElement(obj.tagName);
