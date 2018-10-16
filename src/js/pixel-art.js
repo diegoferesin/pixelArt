@@ -1,3 +1,5 @@
+/** global $ */
+
 var nombreColores = [
   'White',
   'LightYellow',
@@ -131,13 +133,38 @@ colorPersonalizado.addEventListener('change', function() {
   // Completar para que cambie el indicador-de-color al colorActual
 });
 
-let paleta = document.getElementById('paleta');
-let grillaPixeles = document.getElementById('grilla-pixeles');
+var paleta = document.getElementById('paleta');
+var grillaPixeles = document.getElementById('grilla-pixeles');
+// let indicadorDeColor = document.getElementById('indicador-de-color');
 
 function recorreListaDeColores() {
   for (var i = 0; i < nombreColores.length; i++) {
     var nuevoDiv = document.createElement('div');
+    paleta.appendChild(nuevoDiv);
+    nuevoDiv.className = 'color-paleta';
+    nuevoDiv.title = nombreColores[i];
     var st = nuevoDiv.style;
-    nombreColores;
+    st.backgroundColor = nombreColores[i];
   }
+}
+
+function creaGrilla(num) {
+  for (var i = 0; i < num; i++) {
+    var divNuevo = document.createElement('div');
+    grillaPixeles.appendChild(divNuevo);
+  }
+}
+
+recorreListaDeColores(nombreColores);
+creaGrilla(1750);
+
+paleta.addEventListener('click', cambiaIndicador);
+// $('#paleta').click(cambiaIndicador);
+
+function cambiaIndicador(event) {
+  var color = event;
+  // var color = event.style.backgroundColor;
+  // let indicadorDeColor = document.getElementById('indicador-de-color');
+  // indicadorDeColor.style.backgroundColor = color;
+  alert('Funciona');
 }
