@@ -1,3 +1,7 @@
+## Proyecto Pixel Art
+
+Acámica - Carrera de Desarrollo Web Full Stack
+
 # base-project
 
 ## Desarrollo
