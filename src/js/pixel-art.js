@@ -135,7 +135,7 @@ colorPersonalizado.addEventListener('change', function() {
 
 var paleta = document.getElementById('paleta');
 var grillaPixeles = document.getElementById('grilla-pixeles');
-// let indicadorDeColor = document.getElementById('indicador-de-color');
+// var indicadorDeColor = document.getElementById('indicador-de-color');
 
 function recorreListaDeColores() {
   for (var i = 0; i < nombreColores.length; i++) {
@@ -151,6 +151,7 @@ function recorreListaDeColores() {
 function creaGrilla(num) {
   for (var i = 0; i < num; i++) {
     var divNuevo = document.createElement('div');
+    // divNuevo.className = [i];
     grillaPixeles.appendChild(divNuevo);
   }
 }
@@ -160,11 +161,35 @@ creaGrilla(1750);
 
 paleta.addEventListener('click', cambiaIndicador);
 // $('#paleta').click(cambiaIndicador);
+function cambiaIndicador(e) {
+  // console.log(e);
+  e.preventDefault();
+  var color = e.target.style.backgroundColor;
+  var indicadorDeColor = document.getElementById('indicador-de-color');
+  indicadorDeColor.style.backgroundColor = color;
+  // alert('Funciona');
+  return color;
+}
 
-function cambiaIndicador(event) {
-  var color = event;
-  // var color = event.style.backgroundColor;
-  // let indicadorDeColor = document.getElementById('indicador-de-color');
-  // indicadorDeColor.style.backgroundColor = color;
+// function iniciarAcordeon() {
+//   $('.js-encabezado').on('click', encabezadoHandler);
+// }
+
+// function encabezadoHandler(event) {
+//   event.preventDefault();
+//   $(this)
+//     .next('.js-descripcion')
+//     .slideToggle();
+// }
+
+grillaPixeles.addEventListener('click', pintarGrilla);
+function pintarGrilla(e) {
+  e.preventDefault();
+  var indicadorDeColor = document.getElementById('indicador-de-color');
+  var color = indicadorDeColor.style.backgroundColor;
+  // var divSeleccionado = $(this).style.backgroundColor;
+  // divSeleccionado = color;
+  // var divAPintar = document.getElementsByTagName('div');
+  // divAPintar.style.backgroundColor = color;
   alert('Funciona');
 }
