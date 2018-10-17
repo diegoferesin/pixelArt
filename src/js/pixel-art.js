@@ -123,6 +123,10 @@ var nombreColores = [
   'Black'
 ];
 
+var paleta = document.getElementById('paleta');
+var grillaPixeles = document.getElementById('grilla-pixeles');
+var indicadorDeColor = document.getElementById('indicador-de-color');
+
 // Variable para guardar el elemento 'color-personalizado'
 // Es decir, el que se elige con la rueda de color.
 var colorPersonalizado = document.getElementById('color-personalizado');
@@ -130,13 +134,9 @@ var colorPersonalizado = document.getElementById('color-personalizado');
 colorPersonalizado.addEventListener('change', function() {
   // Se guarda el color de la rueda en colorActual
   var colorActual = colorPersonalizado.value;
-  var indicadorDeColorLocal = document.getElementById('indicador-de-color');
-  indicadorDeColorLocal.style.backgroundColor = colorActual;
+  // var indicadorDeColorLocal = document.getElementById('indicador-de-color');
+  indicadorDeColor.style.backgroundColor = colorActual;
 });
-
-var paleta = document.getElementById('paleta');
-var grillaPixeles = document.getElementById('grilla-pixeles');
-// var indicadorDeColor = document.getElementById('indicador-de-color');
 
 function recorreListaDeColores() {
   for (var i = 0; i < nombreColores.length; i++) {
@@ -166,7 +166,6 @@ function cambiaIndicador(e) {
   // console.log(e);
   e.preventDefault();
   var color = e.target.style.backgroundColor;
-  var indicadorDeColor = document.getElementById('indicador-de-color');
   indicadorDeColor.style.backgroundColor = color;
   // alert('Funciona');
   return color;
@@ -186,7 +185,7 @@ function cambiaIndicador(e) {
 grillaPixeles.addEventListener('click', pintarGrilla);
 function pintarGrilla(e) {
   e.preventDefault();
-  var indicadorDeColor = document.getElementById('indicador-de-color');
+  // var indicadorDeColor = document.getElementById('indicador-de-color');
   var color = indicadorDeColor.style.backgroundColor;
   // var divSeleccionado = $(this).style.backgroundColor;
   // divSeleccionado = color;
@@ -194,3 +193,27 @@ function pintarGrilla(e) {
   // divAPintar.style.backgroundColor = color;
   alert('Funciona');
 }
+
+var mouseApretado = grillaPixeles.addEventListener('mousedown', pintarGrilla);
+var miMouseUp = grillaPixeles.addEventListener('mouseup', pasaAlgo);
+
+function pintarEnMovimiento() {
+  if (mouseApretado) {
+    pintarGrilla;
+  } else {
+    console.log('No sé qué pasaría acá');
+  }
+}
+
+function iniciarDrone() {
+  $('#grilla-pixeles').on('mousemove', mueveElDrone);
+}
+
+function mueveElDrone(event) {
+  $('.cursor-personalizado').css({
+    left: event.pageX + 'px',
+    top: event.pageY + 'px'
+  });
+}
+
+iniciarDrone();
