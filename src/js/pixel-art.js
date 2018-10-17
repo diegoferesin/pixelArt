@@ -123,29 +123,27 @@ var nombreColores = [
   'Black'
 ];
 
-var paleta = document.getElementById('paleta');
-var grillaPixeles = document.getElementById('grilla-pixeles');
-var indicadorDeColor = document.getElementById('indicador-de-color');
+var paleta = $('#paleta');
+var grillaPixeles = $('#grilla-pixeles');
+var indicadorDeColor = $('#indicador-de-color');
 
 // Variable para guardar el elemento 'color-personalizado'
 // Es decir, el que se elige con la rueda de color.
-var colorPersonalizado = document.getElementById('color-personalizado');
-
-colorPersonalizado.addEventListener('change', function() {
+var colorPersonalizado = $('#color-personalizado');
+colorPersonalizado.change(function() {
   // Se guarda el color de la rueda en colorActual
-  var colorActual = colorPersonalizado.value;
-  // var indicadorDeColorLocal = document.getElementById('indicador-de-color');
-  indicadorDeColor.style.backgroundColor = colorActual;
+  var colorActual = colorPersonalizado.val();
+  indicadorDeColor.css('background-color', colorActual);
 });
 
 function recorreListaDeColores() {
   for (var i = 0; i < nombreColores.length; i++) {
     var nuevoDiv = document.createElement('div');
-    paleta.appendChild(nuevoDiv);
     nuevoDiv.className = 'color-paleta';
     nuevoDiv.title = nombreColores[i];
     var st = nuevoDiv.style;
     st.backgroundColor = nombreColores[i];
+    paleta.append(nuevoDiv);
   }
 }
 
@@ -153,22 +151,18 @@ function creaGrilla(num) {
   for (var i = 0; i < num; i++) {
     var divNuevo = document.createElement('div');
     // divNuevo.className = [i];
-    grillaPixeles.appendChild(divNuevo);
+    grillaPixeles.append(divNuevo);
   }
 }
 
 recorreListaDeColores(nombreColores);
 creaGrilla(1750);
 
-paleta.addEventListener('click', cambiaIndicador);
-// $('#paleta').click(cambiaIndicador);
+paleta.click(cambiaIndicador);
+
 function cambiaIndicador(e) {
-  // console.log(e);
-  e.preventDefault();
-  var color = e.target.style.backgroundColor;
-  indicadorDeColor.style.backgroundColor = color;
-  // alert('Funciona');
-  return color;
+  var color = $(e.target).css('background-color');
+  indicadorDeColor.css('background-color', color);
 }
 
 // function iniciarAcordeon() {
@@ -182,38 +176,37 @@ function cambiaIndicador(e) {
 //     .slideToggle();
 // }
 
-grillaPixeles.addEventListener('click', pintarGrilla);
+grillaPixeles.click(pintarGrilla);
 function pintarGrilla(e) {
-  e.preventDefault();
-  // var indicadorDeColor = document.getElementById('indicador-de-color');
-  var color = indicadorDeColor.style.backgroundColor;
-  // var divSeleccionado = $(this).style.backgroundColor;
-  // divSeleccionado = color;
-  // var divAPintar = document.getElementsByTagName('div');
-  // divAPintar.style.backgroundColor = color;
-  alert('Funciona');
-}
-
-var mouseApretado = grillaPixeles.addEventListener('mousedown', pintarGrilla);
-var miMouseUp = grillaPixeles.addEventListener('mouseup', pasaAlgo);
-
-function pintarEnMovimiento() {
-  if (mouseApretado) {
-    pintarGrilla;
+  var color = indicadorDeColor.css('background-color');
+  if (color !== 'rgba(0, 0, 0, 0)') {
+    var elemento = $(e.target);
+    elemento.css('background-color', color);
   } else {
-    console.log('No sé qué pasaría acá');
+    alert('Seleccione un color antes de pintar');
   }
 }
 
-function iniciarDrone() {
-  $('#grilla-pixeles').on('mousemove', mueveElDrone);
-}
+//var mouseApretado = grillaPixeles.addEventListener('mousedown', pintarGrilla);
+//var miMouseUp = grillaPixeles.addEventListener('mouseup', pasaAlgo);
 
-function mueveElDrone(event) {
-  $('.cursor-personalizado').css({
-    left: event.pageX + 'px',
-    top: event.pageY + 'px'
-  });
-}
+// function pintarEnMovimiento() {
+//   if (mouseApretado) {
+//     pintarGrilla;
+//   } else {
+//     console.log('No sé qué pasaría acá');
+//   }
+// }
 
-iniciarDrone();
+// function iniciarDrone() {
+//   $('#grilla-pixeles').on('mousemove', mueveElDrone);
+// }
+
+// function mueveElDrone(event) {
+//   $('.cursor-personalizado').css({
+//     left: event.pageX + 'px',
+//     top: event.pageY + 'px'
+//   });
+// }
+
+// iniciarDrone();
