@@ -129,8 +129,9 @@ var colorPersonalizado = document.getElementById('color-personalizado');
 
 colorPersonalizado.addEventListener('change', function() {
   // Se guarda el color de la rueda en colorActual
-  colorActual = colorPersonalizado.value;
-  // Completar para que cambie el indicador-de-color al colorActual
+  var colorActual = colorPersonalizado.value;
+  var indicadorDeColorLocal = document.getElementById('indicador-de-color');
+  indicadorDeColorLocal.style.backgroundColor = colorActual;
 });
 
 var paleta = document.getElementById('paleta');
