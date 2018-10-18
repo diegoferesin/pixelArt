@@ -165,17 +165,6 @@ function cambiaIndicador(e) {
   indicadorDeColor.css('background-color', color);
 }
 
-// function iniciarAcordeon() {
-//   $('.js-encabezado').on('click', encabezadoHandler);
-// }
-
-// function encabezadoHandler(event) {
-//   event.preventDefault();
-//   $(this)
-//     .next('.js-descripcion')
-//     .slideToggle();
-// }
-
 grillaPixeles.click(pintarGrilla);
 function pintarGrilla(e) {
   var color = indicadorDeColor.css('background-color');
@@ -187,26 +176,21 @@ function pintarGrilla(e) {
   }
 }
 
-//var mouseApretado = grillaPixeles.addEventListener('mousedown', pintarGrilla);
-//var miMouseUp = grillaPixeles.addEventListener('mouseup', pasaAlgo);
+var mouseApretado = false;
+function mouseApretadoATrue() {
+  mouseApretado = true;
+}
 
-// function pintarEnMovimiento() {
-//   if (mouseApretado) {
-//     pintarGrilla;
-//   } else {
-//     console.log('No sé qué pasaría acá');
-//   }
-// }
+function mouseApretadoAFalse() {
+  mouseApretado = false;
+}
 
-// function iniciarDrone() {
-//   $('#grilla-pixeles').on('mousemove', mueveElDrone);
-// }
+grillaPixeles.mousedown(mouseApretadoATrue);
+grillaPixeles.mouseup(mouseApretadoAFalse);
 
-// function mueveElDrone(event) {
-//   $('.cursor-personalizado').css({
-//     left: event.pageX + 'px',
-//     top: event.pageY + 'px'
-//   });
-// }
-
-// iniciarDrone();
+function pintarEnMovimiento(e) {
+  if (mouseApretado) {
+    pintarGrilla(e);
+  }
+}
+grillaPixeles.mousemove(pintarEnMovimiento);
