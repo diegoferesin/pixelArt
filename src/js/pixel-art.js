@@ -199,21 +199,14 @@ var botonBorrar = $('#borrar');
 botonBorrar.click(borrarGrilla);
 
 function borrarGrilla() {
-  var divsDeLaGrilla = $('.divsDeLaGrilla');
-  divsDeLaGrilla.animate({ 'background-color': 'White' }, 700);
+  $('#grilla-pixeles div').each(function() {
+    this.animate({ 'background-color': 'rgba(0, 0, 0, 0)' }, 1000);
 }
 
 // function borrarGrilla() {
-//   $('#grilla-pixeles div').each(function() {
-//     this.animate({ 'background-color': 'White' }, 700);
+//   var divsDeLaGrilla = $('.divsDeLaGrilla');
+//   divsDeLaGrilla.animate({ 'background-color': 'White' }, 700);
 // }
 
-var imagenes = $('.imgs');
-imagenes.click(cargarSuperheroe);
-
-function cargarSuperheroe(superheroe) {
-  var $pixeles = $('#grilla-pixeles div');
-  for (var i = 0; i < superheroe.length; i++) {
-    $pixeles[i].style.backgroundColor = superheroe[i];
-  }
-}
+var imagenDeSuperHeroe = $("#batman");
+imagenDeSuperHeroe.click(cargarSuperheroe);
