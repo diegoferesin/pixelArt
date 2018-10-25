@@ -150,7 +150,7 @@ function recorreListaDeColores() {
 function creaGrilla(num) {
   for (var i = 0; i < num; i++) {
     var divNuevo = document.createElement('div');
-    // divNuevo.className = [i];
+    divNuevo.className = 'divsDeLaGrilla';
     grillaPixeles.append(divNuevo);
   }
 }
@@ -194,3 +194,26 @@ function pintarEnMovimiento(e) {
   }
 }
 grillaPixeles.mousemove(pintarEnMovimiento);
+
+var botonBorrar = $('#borrar');
+botonBorrar.click(borrarGrilla);
+
+function borrarGrilla() {
+  var divsDeLaGrilla = $('.divsDeLaGrilla');
+  divsDeLaGrilla.animate({ 'background-color': 'White' }, 700);
+}
+
+// function borrarGrilla() {
+//   $('#grilla-pixeles div').each(function() {
+//     this.animate({ 'background-color': 'White' }, 700);
+// }
+
+var imagenes = $('.imgs');
+imagenes.click(cargarSuperheroe);
+
+function cargarSuperheroe(superheroe) {
+  var $pixeles = $('#grilla-pixeles div');
+  for (var i = 0; i < superheroe.length; i++) {
+    $pixeles[i].style.backgroundColor = superheroe[i];
+  }
+}
