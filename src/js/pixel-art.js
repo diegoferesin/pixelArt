@@ -121,7 +121,6 @@ var nombreColores = [
   'DarkSlateGray',
   'Black'
 ];
-
 var paleta = $('#paleta');
 var grillaPixeles = $('#grilla-pixeles');
 var indicadorDeColor = $('#indicador-de-color');
@@ -198,9 +197,8 @@ var botonBorrar = $('#borrar');
 botonBorrar.click(borrarGrilla);
 
 // function borrarGrilla() {
-//   $('#grilla-pixeles div').each(function() {
-//     this.animate({ 'background-color': 'rgba(0, 0, 0, 0)' }, 1000);
-// }
+//   var divsSeleccionados = $('#grilla-pixeles div');
+//   divsSeleccionados.each(function() {this.animate({ 'background-color': 'rgba(0, 0, 0, 0)' }, 700)
 
 function borrarGrilla() {
   var divsDeLaGrilla = $('.divsDeLaGrilla');
@@ -212,18 +210,42 @@ var imagenWonder = $('#wonder');
 var imagenFlash = $('#flash');
 var imagenInvisible = $('#invisible');
 
-imagenBatman.click(cargarSuperheroe(batman));
-imagenWonder.click(cargarSuperheroe(wonder));
-imagenFlash.click(cargarSuperheroe(flash));
-imagenInvisible.click(cargarSuperheroe(invisible));
+imagenBatman.click(cargarSuperheroeBatman);
+imagenWonder.click(cargarSuperheroeWonder);
+imagenFlash.click(cargarSuperheroeFlash);
+imagenInvisible.click(cargarSuperheroeInvisible);
 
-function cargarSuperheroe(superheroe) {
+function cargarSuperheroeBatman() {
   var $pixeles = $('#grilla-pixeles div');
-  for (var i = 0; i < superheroe.length; i++) {
-    $pixeles[i].style.backgroundColor = superheroe[i];
+  for (var i = 0; i < batman.length; i++) {
+    $pixeles[i].style.backgroundColor = batman[i];
+  }
+}
+
+function cargarSuperheroeWonder() {
+  var $pixeles = $('#grilla-pixeles div');
+  for (var i = 0; i < wonder.length; i++) {
+    $pixeles[i].style.backgroundColor = wonder[i];
+  }
+}
+
+function cargarSuperheroeFlash() {
+  var $pixeles = $('#grilla-pixeles div');
+  for (var i = 0; i < flash.length; i++) {
+    $pixeles[i].style.backgroundColor = flash[i];
+  }
+}
+
+function cargarSuperheroeInvisible() {
+  var $pixeles = $('#grilla-pixeles div');
+  for (var i = 0; i < invisible.length; i++) {
+    $pixeles[i].style.backgroundColor = invisible[i];
   }
 }
 
 var guardar = $('#guardar');
-
 guardar.click(guardarPixelArt);
+
+function funcionaFunciona() {
+  alert('Funciona el escuchador');
+}

@@ -63,6 +63,25 @@ h1 {
   margin-top: 10px;
   font-family: 'VT323';
   font-size: 3.5em;
+  background-color: black;
+  background: -webkit-linear-gradient(
+    top,
+    #ff0000 34%,
+    #ff9900 43%,
+    #ffff00 52%,
+    #00ff00 61%,
+    #0000ff 73%
+  );
+  background: linear-gradient(
+    to bottom,
+    #ff0000 34%,
+    #ff9900 43%,
+    #ffff00 52%,
+    #00ff00 61%,
+    #0000ff 73%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 h3 {
