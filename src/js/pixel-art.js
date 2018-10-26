@@ -1,5 +1,4 @@
 /** global $ */
-
 var nombreColores = [
   'White',
   'LightYellow',
@@ -198,15 +197,33 @@ grillaPixeles.mousemove(pintarEnMovimiento);
 var botonBorrar = $('#borrar');
 botonBorrar.click(borrarGrilla);
 
-function borrarGrilla() {
-  $('#grilla-pixeles div').each(function() {
-    this.animate({ 'background-color': 'rgba(0, 0, 0, 0)' }, 1000);
-}
-
 // function borrarGrilla() {
-//   var divsDeLaGrilla = $('.divsDeLaGrilla');
-//   divsDeLaGrilla.animate({ 'background-color': 'White' }, 700);
+//   $('#grilla-pixeles div').each(function() {
+//     this.animate({ 'background-color': 'rgba(0, 0, 0, 0)' }, 1000);
 // }
 
-var imagenDeSuperHeroe = $("#batman");
-imagenDeSuperHeroe.click(cargarSuperheroe);
+function borrarGrilla() {
+  var divsDeLaGrilla = $('.divsDeLaGrilla');
+  divsDeLaGrilla.animate({ 'background-color': 'White' }, 700);
+}
+
+var imagenBatman = $('#batman');
+var imagenWonder = $('#wonder');
+var imagenFlash = $('#flash');
+var imagenInvisible = $('#invisible');
+
+imagenBatman.click(cargarSuperheroe(batman));
+imagenWonder.click(cargarSuperheroe(wonder));
+imagenFlash.click(cargarSuperheroe(flash));
+imagenInvisible.click(cargarSuperheroe(invisible));
+
+function cargarSuperheroe(superheroe) {
+  var $pixeles = $('#grilla-pixeles div');
+  for (var i = 0; i < superheroe.length; i++) {
+    $pixeles[i].style.backgroundColor = superheroe[i];
+  }
+}
+
+var guardar = $('#guardar');
+
+guardar.click(guardarPixelArt);
