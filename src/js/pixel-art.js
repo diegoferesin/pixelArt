@@ -245,7 +245,3 @@ function cargarSuperheroeInvisible() {
 
 var guardar = $('#guardar');
 guardar.click(guardarPixelArt);
-
-function funcionaFunciona() {
-  alert('Funciona el escuchador');
-}
